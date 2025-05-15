@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Shape Game Login</title>
+  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:,">
+</head>
+
+<body>
+  <h1>🏰 Shape Game Login</h1>
+
+  <div id="devPanelLink" style="display: none;">
+    <hr>
+    <button onclick="goToDevPanel()">🛠️ Dev Panel</button>
+  </div>
+  <div id="authSection">
+    <h2>Login</h2>
+    <input id="loginUsername" placeholder="Username">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <button onclick="openRegisterModal()">Register</button>
+
+    <h2>Or</h2>
+    <button onclick="joinAsGuest()">Join as Guest</button>
+  </div>
+
+  <div id="gameSection" style="display:none;">
+    <h2>Welcome, <span id="playerNameDisplay"></span>!</h2>
+    <p>Your ID: <span id="playerIdDisplay"></span></p>
+    <button onclick="goToLobby()">Enter Lobby Screen ➡️</button>
+  </div>
+
+  <div id="errorBox" class="error-modal">
+    <p id="errorMessage">Something went wrong</p>
+    <button onclick="hideError()">OK</button>
+  </div>
+
+  <div id="registerModal" class="modal">
+  <div class="modal-content">
+    <h2>Register</h2>
+    <input id="registerUsername" placeholder="Username">
+    <input id="registerPassword" type="password" placeholder="Password">
+    <br><br>
+    <button onclick="register()">Register</button>
+    <button onclick="closeRegisterModal()">Cancel</button>
+  </div>
+</div>
+
+</body>
+
+</html>

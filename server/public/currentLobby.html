@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Current Lobby</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="currentLobby.js"></script>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <h1>⚔️ Shape Game Lobby Room</h1>
+
+  <p>Logged in as <strong id="playerNameDisplay"></strong></p>
+  <p>Lobby: <strong id="lobbyIdDisplay"></strong></p>
+
+  <h2>Players</h2>
+  <ul id="playerList"></ul>
+
+  <div id="ownerControls" style="display: none;">
+    <button onclick="startGame()">Start Game</button>
+  </div>
+
+  <p><button onclick="leaveLobby()">Leave Lobby</button></p>
+</body>
+</html>
