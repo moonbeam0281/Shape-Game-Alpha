@@ -1,64 +1,105 @@
+const db = require('./Database');
+const { v4: uuidv4 } = require('uuid');
+
 class PlayerHandler {
   constructor() {
-    this.players = {};         // username → player object
-    this.playerCounter = 1;    // Used to assign numeric IDs
+    this.players = {}; // Still useful for live memory sessions
   }
 
-  register(username, password) {
-    if (this.players[username]) return { error: "Username already taken" };
+  async register(username, password) {
+    try {
+      const existing = await db.query('SELECT * FROM players WHERE username = $1', [username]);
+      if (existing.rows.length > 0) {
+        return { success: false, message: "Username already taken" };
+      }
 
-    const player = {
-      id: this.playerCounter++,
-      name: username,
-      password,
-      state: "main menu"
-    };
+      const result = await db.query(
+        'INSERT INTO players (username, password) VALUES ($1, $2) RETURNING id',
+        [username, password]
+      );
 
-    this.players[username] = player;
-    return { success: true, ...this._stripSensitive(player) };
-  }
-
-  login(username, password) {
-    const player = this.players[username];
-    if (!player || player.password !== password) {
-      return { error: "Invalid username or password" };
+      const id = result.rows[0].id;
+      this.players[username] = { id, name: username, state: 'main menu' };
+      return { success: true, id, name: username };
+    } catch (err) {
+      console.error("❌ Register error:", err);
+      return { success: false, message: "Database error" };
     }
-
-    player.state = "main menu";
-    return { success: true, ...this._stripSensitive(player) };
   }
 
-  createGuest() {
-    const username = `guest-${Date.now()}`;
-    const player = {
-      id: this.playerCounter++,
-      name: username,
-      password: null,
-      state: "main menu"
-    };
+  async login(username, password) {
+    try {
+      const result = await db.query(
+        'SELECT * FROM players WHERE username = $1 AND password = $2',
+        [username, password]
+      );
 
-    this.players[username] = player;
-    return { success: true, ...this._stripSensitive(player) };
+      if (result.rows.length === 0) {
+        return { success: false, message: "Invalid credentials" };
+      }
+
+      const player = result.rows[0];
+      this.players[username] = {
+        id: player.id,
+        name: player.username,
+        state: player.state
+      };
+      console.log(`[LOGIN DEBUG] User lookup:`, result.rows);
+
+
+      return { success: true, id: player.id, name: player.username };
+    } catch (err) {
+      console.error("❌ Login error:", err);
+      return { success: false, message: "Database error" };
+    }
   }
 
-  setPlayerState(username, newState) {
-    const player = this.players[username];
-    if (!player) return { error: "Player not found" };
-    player.state = newState;
-    return { success: true };
+  async delete(username, password) {
+    try {
+      const result = await db.query(
+        'SELECT * FROM players WHERE username = $1 AND password = $2',
+        [username, password]
+      );
+
+      if (result.rows.length === 0) {
+        return { success: false, message: "Invalid credentials" };
+      }
+
+      await db.query('DELETE FROM players WHERE username = $1', [username])
+    }
+    catch {
+
+    }
   }
 
-  getPlayer(username) {
-    const player = this.players[username];
-    return player ? this._stripSensitive(player) : null;
+
+  async createGuest() {
+    const guestId = uuidv4().slice(0, 8);
+    const guestName = `Guest_${guestId}`;
+    const result = await db.query(
+      'INSERT INTO players (username, password) VALUES ($1, $2) RETURNING id',
+      [guestName, 'guest']
+    );
+
+    const id = result.rows[0].id;
+    this.players[guestName] = { id, name: guestName, state: 'main menu' };
+    return { success: true, id, name: guestName };
   }
 
-  _stripSensitive(player) {
-    return {
-      id: player.id,
-      name: player.name,
-      state: player.state
-    };
+  async setPlayerState(username, newState) {
+    try {
+      await db.query(
+        'UPDATE players SET state = $1 WHERE username = $2',
+        [newState, username]
+      );
+      if (this.players[username]) {
+        this.players[username].state = newState;
+      }
+      return { success: true };
+    } catch (err) {
+      console.error("❌ State update error:", err);
+      return { success: false, message: "State update failed" };
+    }
   }
 }
 

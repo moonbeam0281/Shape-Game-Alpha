@@ -36,10 +36,12 @@ function sendAuth(endpoint, data) {
   })
   .then(res => res.json())
   .then(result => {
-    if (result.error) return showError("Invalid username or password");
+    if (!result || !result.id || !result.name) return showError("Invalid response from server.");
     handleLogin(result);
-  });
+  })
+  .catch(() => showError("Server error."));
 }
+
 
 function showError(message) {
   const box = document.getElementById('errorBox');
