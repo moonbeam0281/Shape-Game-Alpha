@@ -1,6 +1,12 @@
 {
-  "watch": ["server", "common", "webpack.common.ts", "webpack.dev.ts"],
-  "ext": "ts,js,json",
-  "ignore": ["dist", "client", "node_modules"],
+  "watch": [
+    "server",
+    "common",
+    "client",
+    "webpack.common.ts",
+    "webpack.dev.ts"
+  ],
+  "ext": "ts,js,json,html",
+  "ignore": ["dist", "node_modules", "client/**/*.js", "client/**/*.ts"],
   "exec": "npm run node:dev server/index.ts"
 }
