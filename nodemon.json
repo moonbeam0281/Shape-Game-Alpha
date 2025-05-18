@@ -1,0 +1,6 @@
+{
+  "watch": ["server", "common", "webpack.common.ts", "webpack.dev.ts"],
+  "ext": "ts,js,json",
+  "ignore": ["dist", "client", "node_modules"],
+  "exec": "npm run node:dev server/index.ts"
+}

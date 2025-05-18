@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Captain's Dev Panel</title>
+    <link rel="stylesheet" href="../common/style.css" />
+    <script defer src="./page.ts"></script>
+    <link rel="icon" href="data:," />
+  </head>
+
+  <body>
+    <h1>🛠️ Dev Panel: Captain Access Only</h1>
+    <p>Logged in as <strong id="captainDisplay"></strong></p>
+
+    <section>
+      <h2>Active Lobbies</h2>
+      <button onclick="fetchLobbies()">Refresh Lobbies</button>
+      <div id="lobbyList"></div>
+    </section>
+
+    <section>
+      <h2>Registered Players</h2>
+      <h3>Create Player</h3>
+      <input id="newPlayerName" placeholder="Username" />
+      <input id="newPlayerPass" placeholder="Password" type="password" />
+      <button onclick="createPlayer()">Create Player</button>
+
+      <button onclick="fetchPlayers()">Refresh Players</button>
+      <div id="playerList"></div>
+    </section>
+
+    <section>
+      <h2>Create Test Lobby</h2>
+      <button onclick="createTestLobby()">+ Test Lobby</button>
+    </section>
+
+    <section>
+      <h2>🧠 In-Memory Database Dump</h2>
+      <button onclick="fetchFullState()">Refresh Dump</button>
+      <pre id="fullStateDump"></pre>
+    </section>
+
+    <section>
+      <h2>Navigation</h2>
+      <button onclick="goToMainMenu()">Go to Main Menu</button>
+    </section>
+
+    <div id="joinModal" class="modal">
+      <div class="modal-content">
+        <h2>Join Lobby</h2>
+        <input id="modalPlayer" type="hidden" />
+        <select id="modalLobbySelect"></select>
+        <br /><br />
+        <button onclick="confirmJoin()">Join</button>
+        <button onclick="closeJoinModal()">Cancel</button>
+      </div>
+    </div>
+  </body>
+</html>

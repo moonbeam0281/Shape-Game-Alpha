@@ -1,6 +1,0 @@
-{
-  "watch": ["index.js", "Handlers"],
-  "ext": "js,json",
-  "ignore": ["public"],
-  "exec": "node index.js"
-}

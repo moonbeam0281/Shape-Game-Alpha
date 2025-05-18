@@ -1,12 +1,26 @@
-class LobbyHandler {
+import { Lobby } from "../../common/session";
+
+export default class LobbyService {
+  lobbies: Record<string, Lobby>;
+  lobbyIdCounter: number;
+  lobbyTimeout: number;
+  cleanupInterval: NodeJS.Timeout;
+
+  static default = new LobbyService();
+
   constructor() {
-    this.lobbies = {}; // id → lobby object
+    this.lobbies = {};
     this.lobbyIdCounter = 1;
-    this.lobbyTimeout = 5 * 60 * 1000; // 5 minutes
+    this.lobbyTimeout = 5 * 60 * 1000;
     this.cleanupInterval = setInterval(() => this.cleanupLobbies(), 10 * 1000);
   }
 
-  createLobby(owner, name, maxPlayers, allowSpectators = false) {
+  createLobby(
+    owner: string,
+    name: string,
+    maxPlayers: number,
+    allowSpectators: boolean = false
+  ) {
     const id = this.lobbyIdCounter++;
 
     this.lobbies[id] = {
@@ -16,28 +30,29 @@ class LobbyHandler {
       maxPlayers,
       allowSpectators,
       players: [owner],
-      lastActive: Date.now()
+      lastActive: Date.now(),
     };
 
     console.log(`🛠️ Created lobby '${name}' (ID: ${id}) by ${owner}`);
     return this.lobbies[id];
   }
 
-  joinLobby(lobbyId, playerName) {
+  joinLobby(lobbyId: number, playerName: string) {
     const lobby = this.lobbies[lobbyId];
     if (!lobby || lobby.players.includes(playerName)) return null;
-    if (lobby.players.length >= lobby.maxPlayers) return { error: "Lobby is full" };
+    if (lobby.players.length >= lobby.maxPlayers)
+      return { error: "Lobby is full" };
 
     lobby.players.push(playerName);
     lobby.lastActive = Date.now();
     return lobby;
   }
 
-  leaveLobby(lobbyId, playerName) {
+  leaveLobby(lobbyId: number, playerName: string) {
     const lobby = this.lobbies[lobbyId];
     if (!lobby) return { error: "Lobby not found" };
 
-    lobby.players = lobby.players.filter(p => p !== playerName);
+    lobby.players = lobby.players.filter((p) => p !== playerName);
 
     if (lobby.players.length === 0) {
       delete this.lobbies[lobbyId];
@@ -56,11 +71,13 @@ class LobbyHandler {
   }
 
   getOpenLobbies() {
-    return Object.values(this.lobbies).filter(lobby => lobby.players.length < lobby.maxPlayers);
+    return Object.values(this.lobbies).filter(
+      (lobby) => lobby.players.length < lobby.maxPlayers
+    );
   }
 
-  getLobbyById(id) {
-    return this.lobbies[id] || null;
+  getLobbyById(id: number) {
+    return this.lobbies[id] ?? null;
   }
 
   cleanupLobbies() {
@@ -74,5 +91,3 @@ class LobbyHandler {
     }
   }
 }
-
-module.exports = LobbyHandler;
