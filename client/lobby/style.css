@@ -1,0 +1,172 @@
+body {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header header"
+        "sidebar main sidebarRight";
+    height: 100vh;
+    gap: 10px;
+    background-color: #111;
+    color: #00ffff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #39ff14;
+    text-shadow: 0 0 5px #39ff14, 0 0 10px #fff;
+}
+
+.sidebar,
+.sidebar-right {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    font-size: 10px;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.sidebar-right {
+    grid-area: sidebarRight;
+}
+
+main {
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+}
+
+.mainHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 2px solid cyan;
+    border-radius: 12px;
+    z-index: 10;
+    position: sticky;
+    top: 0;
+    margin: 10px 10px 20px 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2);
+    border-bottom: 2px solid #00ffff;
+    width: calc(100% - 20px);
+}
+
+.lobbyCard {
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.lobbyCard h3 {
+    margin: 0;
+    color: #ffcc00;
+}
+
+.playerSlots {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+button {
+    background-color: #00bbbb;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+}
+
+input[type="text"],
+input[type="number"] {
+    background-color: #1e1e1e;
+    color: #00ffff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #222;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    width: 300px;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    width: 90%;
+    padding: 8px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    background: #333;
+    color: white;
+}
+
+.error-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #2c2c2c;
+    padding: 20px 30px;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+    text-align: center;
+}
+
+.error-modal button {
+    margin-top: 12px;
+    padding: 8px 20px;
+    background-color: #00ffff;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}

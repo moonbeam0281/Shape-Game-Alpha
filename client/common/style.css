@@ -1,55 +1,58 @@
 body {
   background-color: #111;
   color: #eee;
-  font-family: "Segoe UI", sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px;
   height: 100vh;
   margin: 0;
 }
 
 h1 {
-  color: #00ffcc;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+  color: #00ff4c;
+  margin-bottom: 40px;
+  text-shadow: 0 0 5px rgb(255, 145, 0), 0 0 10px rgb(0, 162, 255), 0 0 20px rgb(225, 0, 255);
+  font-size: 38px;
+  text-align: center;
 }
 
 h2 {
-  color: #ffaa00;
+  color: #006eff;
+  text-align: center;
+  text-shadow: 0 0 5px #0063ff80;
+  size: 15px;
 }
 
 input {
-  margin: 6px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 6px;
-  background-color: #222;
-  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: solid rgba(0, 0, 0, 0) 1px;
+  background-color: #1e1e1e;
+  color: #00ffff;
   width: 200px;
 }
 
+input:hover{
+  border: solid #00ffff 1px;
+  text-shadow: 0 0 5px #00ffff;
+  box-shadow: 0 0 5px #00ffff8a;
+}
+
 button {
-  margin: 8px;
-  padding: 10px 16px;
-  background-color: #00b3b3;
-  color: white;
+  background-color: #00dfdf;
+  color: black;
   font-weight: bold;
   border: none;
+  padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: 0.3s;
 }
 
 button:hover {
-  background-color: #00e6e6;
-}
-
-#gameSection {
-  margin-top: 40px;
-  text-align: center;
-  color: #66ff99;
+  background-color: #00ffff;
+  box-shadow: 0 0 8px #00ffff;
 }
 
 pre {
@@ -118,4 +121,22 @@ pre {
   color: #000;
   font-weight: bold;
   cursor: pointer;
+}
+/*Loging page by ID styles here*/
+#authSection {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border: 2px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px #00ffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+#loggedInSection {
+  margin-top: 40px;
+  text-align: center;
+  color: #66ff99;
 }

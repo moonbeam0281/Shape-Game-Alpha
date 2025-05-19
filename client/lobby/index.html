@@ -4,28 +4,42 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lobby Dashboard</title>
-  <link rel="stylesheet" href="../common/style.css" />
+  
+  <link rel="stylesheet" href="style.css" />
   <script defer src="./page.ts"></script>
   <link rel="icon" href="data:," />
 </head>
 
 <body>
-  <h1>🧭 Welcome to the Shape War Lobby</h1>
+  <header>
+    <h1>🧭 Welcome to the Shape War Lobby</h1>
+    <p>Logged in as <strong id="playerNameDisplay"></strong> (ID: <span id="playerIdDisplay"></span>)</p>
+  </header>
 
-  <p>
-    Logged in as <strong id="playerNameDisplay"></strong> (ID:
-    <span id="playerIdDisplay"></span>)
-  </p>
+  <div class="sidebar">
+    <img src="" alt="Profile image" width="100" height="100">
+    <p>STATS:</p>
+  </div>
+  <main>
+    <div class="mainHeader">
+      <h2>Lobbies:</h2>
+      <button onclick="openModal()">Create Lobby</button>
+      <button onclick="loadLobbies()">Refresh</button>
+      <button onclick="openLogout()">🚪 Log Out</button>
+    </div>
+    
+    <div id="lobbyList">
+      <!-- Dynamic lobby cards will go here -->
+    </div>
+  </main>
 
-  <h2>Create New Lobby</h2>
-  <button onclick="openModal()">Create Lobby</button>
+  <div class="sidebar-right">
+    <h3>Online Players:</h3>
+    <ul id="onlinePlayers">
+      <!-- Filled dynamically -->
+    </ul>
+  </div>
 
-  <h2>Available Lobbies</h2>
-  <button onclick="loadLobbies()">Refresh</button>
-  <div id="lobbyList"></div>
-
-  <h2>Future: Active Games / Spectate</h2>
-  <p><em>Coming soon...</em></p>
 
   <div id="createLobbyModal" class="modal">
     <div class="modal-content">
@@ -40,8 +54,6 @@
       <button onclick="closeModal()">Cancel</button>
     </div>
   </div>
-
-  <p><button onclick="openLogout()">🚪 Log Out</button></p>
 
   <div id="logoutModal" class="modal">
     <div class="modal-content">

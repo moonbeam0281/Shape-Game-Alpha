@@ -20,13 +20,13 @@
 - [ ] `MapHandler` loads maps dynamically
 - [ ] `PlayFieldMap` as example
 - [ ] Maps stored in `src/Maps/` and implement `iMap`
-- [ ] Map includes floor mesh and boundaries
+- [ ] Map includes floor mesh, lighting, background and boundaries
 
 ## 🔦 ENVIRONMENT & RENDERING
 - [ ] `SceneHandler.ts` sets up Three.js scene
-- [ ] Ambient + directional light
-- [ ] Single light source on map edge
-- [ ] Camera with OrbitControls and bounds
+- [ ] `LightingHandler.ts` set up Ambient + directional light
+- [ ] RTS style Camera with custom controls and bounds
+- [ ] In-Game UI with minimap
 
 ## 🧍 PLAYER SYSTEM
 - [x] `PlayerHandler` manages all players

@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <title>Shape Game Login</title>
-    <link rel="stylesheet" href="./common/style.css" />
+    <link rel="stylesheet" href="./common/style.css"/>
     <script defer src="./common/script.ts"></script>
     <link rel="icon" href="data:," />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap", rel="stylesheet"/>
   </head>
 
   <body>
-    <h1>🏰 Shape Game Login</h1>
+    <h1>🔺🔷Shape Game!🔴🟦</h1>
 
     <div id="devPanelLink" style="display: none">
       <hr />
@@ -26,8 +27,8 @@
       <button onclick="joinAsGuest()">Join as Guest</button>
     </div>
 
-    <div id="gameSection" style="display: none">
-      <h2>Welcome, <span id="playerNameDisplay"></span>!</h2>
+    <div id="loggedInSection" style="display: none">
+      <h2>Welcome <span id="playerNameDisplay"></span>!</h2>
       <p>Your ID: <span id="playerIdDisplay"></span></p>
       <button onclick="goToLobby()">Enter Lobby Screen ➡️</button>
     </div>

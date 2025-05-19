@@ -142,7 +142,7 @@ export function handleLogin(user: { id: string; name: string }) {
   localStorage.setItem("playerName", user.name);
 
   const authSectionElement = document.getElementById("authSection");
-  const gameSectionElement = document.getElementById("gameSection");
+  const gameSectionElement = document.getElementById("loggedInSection");
   const playerNameDisplayElement = document.getElementById("playerNameDisplay");
   const playerIdDisplayElement = document.getElementById("playerIdDisplay");
 
