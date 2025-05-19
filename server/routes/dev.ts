@@ -4,6 +4,8 @@ import PlayerService from "../services/player-service";
 import { Router } from "express";
 import LobbyService from "../services/lobby-service";
 import { fileURLToPath } from "url";
+import db from "../database";
+import { userInfo } from "os";
 
 const playerService = PlayerService.default;
 const lobbyService = LobbyService.default;
@@ -40,8 +42,10 @@ router.post("/create-player", async (req, res) => {
 });
 
 router.post("/delete-player", async (req, res) => {
-  const { username } = req.body;
+  const { username, password} = req.body;
+  await playerService.delete(username, password)
   delete playerService.players[username];
+  console.log(`Attempting to delete:${username}`);
   res.json({ success: true });
 });
 
@@ -49,6 +53,23 @@ router.post("/set-player-state", async (req, res) => {
   const { username, state } = req.body;
   const result = await playerService.setPlayerState(username, state);
   res.json(result);
+});
+
+router.get("/get-all-players-db", async (req, res) => {
+  try{
+    const result = await db.query("SELECT * FROM players");
+    const players = result.rows.map((p) => ({
+      username: p.username,
+      id: p.id,
+      password: p.password,
+      guest: p.guest
+    }));
+    res.json(players);
+  }
+  catch(e){
+    console.log("DataBase error while fetching players", e);
+    res.json({error: "Something went wrong"});
+  }
 });
 
 router.get("/debug-state", async (req, res) => {

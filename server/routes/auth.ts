@@ -8,6 +8,8 @@ const router = Router();
 router.post("/register", async (req, res) => {
   const { username, password } = req.body;
   const result = await playerService.register(username, password);
+  if(result.success)
+    console.log(`A new player has registered: ${result.name}:${result.id}`);
   res.json(result);
 });
 
@@ -19,6 +21,8 @@ router.post("/login", async (req, res) => {
 
 router.post("/guest", async (req, res) => {
   const result = await playerService.createGuest();
+  if(result.success)
+    console.log(`A new guest has joined: ${result.name}:${result.id}`);
   res.json(result);
 });
 

@@ -51,7 +51,6 @@ export function register() {
   const username = getInputValue("registerUsername");
   const password = getInputValue("registerPassword");
   sendAuth("/register", { username, password });
-  //Implement IF registry is good
 
   const registerModalElement = document.getElementById("registerModal");
 
@@ -81,7 +80,7 @@ export function sendAuth<T>(endpoint: string, data: T) {
     .then((res) => res.json())
     .then((result) => {
       if (!result || !result.id || !result.name)
-        return showError("Invalid response from server.");
+        return showError(result.message);
       handleLogin(result);
     })
     .catch(() => showError("Server error."));

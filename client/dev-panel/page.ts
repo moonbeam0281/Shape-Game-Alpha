@@ -1,3 +1,5 @@
+import { userInfo } from "os";
+import PlayerService from "../../server/services/player-service";
 import { API, getInputValue, showError } from "../common/script";
 
 const captain = localStorage.getItem("playerName");
@@ -142,7 +144,31 @@ export async function fetchFullState() {
   const fullStateDumpElement = document.getElementById("fullStateDump");
   if (fullStateDumpElement) {
     fullStateDumpElement.textContent = JSON.stringify(state, null, 2);
+  } 
+}
+
+export async function fetchDbState() {
+  const res = await fetch(`${API}/get-all-players-db`);
+  const players: {username: string, id: number, password: string, guest: boolean}[] 
+    = await res.json();
+
+  const container = document.getElementById('fullStateDumpDb');
+  if (container) {
+    container.innerHTML = "";
   }
+
+  players.forEach((player) => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <strong>${player.username}</strong> (ID: ${player.id}) — ${player.guest? "Guest" : "Registered"}
+        <button onclick="deletePlayer('${player.username}')">❌ Delete</button>
+        <hr>
+      `;
+      if (container) {
+        container.appendChild(div);
+      }
+    });
+
 }
 
 //Modal Handlers:

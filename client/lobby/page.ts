@@ -57,12 +57,29 @@ export function closeModal() {
   }
 }
 
+export function openLogout(){
+  const openLogoutModal = document.getElementById('logoutModal');
+  if(openLogoutModal)
+  {
+    openLogoutModal.style.display = "flex";
+  }
+}
+
+export function closeLogout(){
+  const closeLogoutModal = document.getElementById('logoutModal');
+  if(closeLogoutModal)
+  {
+    closeLogoutModal.style.display = "none";
+  }
+}
+
+
 export async function confirmCreateLobby() {
   let name = getInputValue("lobbyNameInput").trim();
   const maxPlayers = parseInt(getInputValue("maxPlayersInput"));
   const allowSpectators = getCheckboxValue("allowSpectatorsInput");
 
-  // ✅ Default to "PlayerName's lobby" if name is blank
+  // Default to "PlayerName's lobby" if name is blank
   if (!name) {
     name = `${playerName}'s lobby`;
   }

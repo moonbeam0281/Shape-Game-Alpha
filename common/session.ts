@@ -10,6 +10,7 @@ export interface Player {
   id: string;
   name: string;
   state: string;
+  isGuest: boolean;
 }
 
 export interface Session {

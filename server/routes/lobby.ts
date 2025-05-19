@@ -1,6 +1,7 @@
 import { Router } from "express";
 import PlayerService from "../services/player-service";
 import LobbyService from "../services/lobby-service";
+import { Result } from "pg";
 
 const playerService = PlayerService.default;
 const lobbyService = LobbyService.default;
@@ -37,6 +38,12 @@ router.post("/leave-lobby", async (req, res) => {
   await playerService.setPlayerState(player, "main menu");
   res.json(result);
 });
+/*
+router.post("/leave-lobby-if-in", async (req, res) => {
+  const {lobbyId, player} = req.body;
+  const result = await playerService.leaveLobbyRefresh
+  res.json(Result);
+});*/
 
 router.post("/delete-lobby", async (req, res) => {
   const { lobbyId } = req.body;
