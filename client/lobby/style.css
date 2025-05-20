@@ -1,301 +1,292 @@
+/* === GLOBAL RESET + BASE === */
+* {
+  box-sizing: border-box;
+}
+
 body {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-    grid-template-rows: auto 1fr;
+  display: grid;
+  grid-template-columns: 250px 1fr 250px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+      "header header header"
+      "sidebar main sidebarRight";
+  height: 100vh;
+  gap: 10px;
+  background-color: #0a0a0a;
+  color: #00ffe7;
+  font-family: 'Press Start 2P', cursive;
+  overflow-x: hidden;
+}
+
+@media (max-width: 1100px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
     grid-template-areas:
-        "header header header"
-        "sidebar main sidebarRight";
-    height: 100vh;
-    gap: 10px;
-    background-color: #111;
-    color: #00ffff;
-    font-family: 'Press Start 2P', cursive;
+      "header"
+      "sidebar"
+      "main"
+      "sidebarRight";
+  }
+
+  .sidebar, .sidebar-right {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .mainHeader {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mainHeader button {
+    width: 100%;
+  }
+
+  .lobbyCard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .lobbyInfo, .lobbyCardPlayers, .lobbyButtons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
+/* === HEADER === */
 header {
-    grid-area: header;
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    color: #39ff14;
-    text-shadow: 0 0 5px #39ff14, 0 0 10px #fff;
+  grid-area: header;
+  text-align: center;
+  padding: 10px;
+  font-size: 16px;
+  color: #00ff99;
+  background-color: #111;
+  text-shadow: 0 0 4px #00ff99, 0 0 8px #ffffff80;
+  border-bottom: 2px solid #00ffe7;
 }
 
+/* === SIDEBARS === */
 .sidebar,
 .sidebar-right {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 10px;
-    border: 2px solid #00ffff;
-    border-radius: 10px;
-    font-size: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 12px;
+  border: 2px solid #00ffe7;
+  border-radius: 10px;
+  font-size: 11px;
 }
 
 .sidebar {
-    grid-area: sidebar;
+  grid-area: sidebar;
 }
 
 .sidebar-right {
-    grid-area: sidebarRight;
+  grid-area: sidebarRight;
 }
 
+.sidebar-right h3 {
+  font-size: 12px;
+  text-align: center;
+}
+
+/* === MAIN SECTION === */
 main {
-    grid-area: main;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 25px;
-    padding-top: 5px;
-    border: 2px solid #00ffff;
-    border-radius: 10px;
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid #00ffe7;
+  border-radius: 10px;
+  background: #111;
 }
 
+/* === HEADER BAR === */
 .mainHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 20px;
-    border: 2px solid cyan;
-    border-radius: 12px;
-    z-index: 10;
-    position: sticky;
-    top: 0;
-    margin: 5px;
-    background-color: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 4px 8px rgba(0, 255, 255);
-    border-bottom: 2px solid #00ffff;
-    width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 24px;
+  border: 2px solid #00ffe7;
+  border-radius: 12px;
+  z-index: 10;
+  position: sticky;
+  top: 0;
+  margin: 10px;
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 12px #00ffe7;
+  width: 95%;
+  max-width: 1000px;
 }
 
-.mainHeader button {
-    width: 30%;
-}
-
+/* === LOBBY LIST === */
 .lobbyList {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px 20px;
-    height: fit-content;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-    border-radius: 15px;
-    box-shadow: #00ffff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  gap: 15px;
 }
 
+/* === LOBBY CARD === */
 .lobbyCard {
-    display: flex;
-    border: 2px solid #00ffff;
-    border-radius: 8px;
-    margin: 10px 0;
-    padding: 10px;
-    width: 100%;
-    justify-content: left;
-    height: 150px;
-}
-
-.lobbyCard div {
-    border: 2px solid #00ffff;
-    height: 90%;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.lobbyCard div:hover {
-    box-shadow: 0px 0px 10px #00ffff;
-}
-
-.lobbyInfo {
-    width: 30%;
-}
-
-.lobbyCard h3 {
-    margin: 0;
-    color: #407af8;
-}
-
-.lobbyCard p {
-    text-align: center;
-    color: #35d7ff;
-}
-
-.lobbyCardPlayers {
-    width: 40%;
-    margin-left: 8px;
-    margin-right: 8px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 7px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-}
-
-.lobbyCardPlayers h4 {
-    position: relative;
-    width: 100px;
-    height: 30px;
-    border-radius: 8px;
-    margin: 0;
-    padding: 10px;
-    border: 1px solid cyan;
-    text-align: center;
-}
-
-.lobbyCardPlayers h4:hover {
-    box-shadow: 0 0 8px #18cfcf;
-    animation: glowPulse 1s infinite alternate;
-}
-
-.lobbyCardPlayers h4:hover::after {
-    content: attr(data-info);
-    position: absolute;
-    top: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #222;
-    padding: 6px 10px;
-    color: cyan;
-    border-radius: 6px;
-    font-size: 10px;
-    white-space: nowrap;
-    z-index: 999;
-}
-
-.lobbyCardPlayers h4::before {
-  content: "●";
-  margin-right: 5px;
-  color: lime;
-}
-
-
-@keyframes glowPulse {
-    0% {
-        box-shadow: 0 0 4px cyan;
-    }
-
-    100% {
-        box-shadow: 0 0 12px cyan;
-    }
-}
-
-.lobbyCardPlayers h4.owner {
-    border-color: gold;
-    color: gold;
-    font-weight: bold;
-}
-
-.lobbyCardPlayers h4.bot {
-    color: #999;
-    border-color: #555;
-    font-style: italic;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #00ffe7;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  max-width: 1000px;
+  transition: 0.3s ease;
+  background: #181818;
 }
 
 .lobbyCard:hover {
-    box-shadow: 0px 0px 10px #00ffff;
-    background-color: #00245334;
+  box-shadow: 0px 0px 16px #00ffe7;
+  background-color: #001a2b;
 }
 
-.playerSlots {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0;
+.lobbyCard div {
+  border: 2px solid #00ffe7;
+  border-radius: 6px;
+  padding: 10px;
+  flex: 1;
+  margin: 0 5px;
+  height: 100%;
+  max-height: 200px;
 }
 
-.lobbyButtons {
-    width: 30%;
-    overflow: auto;
-    padding-bottom: 2px;
+/* === LOBBY INFO === */
+.lobbyInfo h3 {
+  color: #66aaff;
+  margin-bottom: 6px;
 }
 
-.lobbyButtons h4,
+.lobbyInfo p {
+  color: #00d8ff;
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* === PLAYER BOXES === */
+.lobbyCardPlayers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  height: 100%; 
+  overflow-y: auto;
+}
+
+.lobbyCardPlayers h4 {
+  position: relative;
+  width: 100px;
+  height: 60px;
+  font-size: 10px;
+  padding: 8px;
+  text-align: center;
+  color: #00ffe7;
+  border: 1px solid #00ffe7;
+  border-radius: 6px;
+  background-color: #111;
+  transition: all 0.3s ease;
+}
+
+.lobbyCardPlayers h4:hover {
+  box-shadow: 0 0 8px #00ffe7;
+  animation: glowPulse 1s infinite alternate;
+}
+
+.lobbyCardPlayers h4:hover::after {
+  content: attr(data-info);
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #222;
+  padding: 4px 8px;
+  color: cyan;
+  border-radius: 6px;
+  font-size: 10px;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+.lobbyCardPlayers h4.owner {
+  color: gold;
+  border-color: gold;
+}
+
+.lobbyCardPlayers h4.bot {
+  color: #999;
+  border-color: #666;
+  font-style: italic;
+}
+
+/* === BUTTONS === */
 button {
-    width: 100%;
-    margin-top: 5px;
-}
-
-button {
-    background-color: #00bbbb;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    color: black;
-    cursor: pointer;
-    transition: 0.3s;
-    font-weight: bold;
+  background-color: #00bbbb;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 button:hover {
-    background-color: #00ffff;
-    box-shadow: 0 0 8px #00ffff;
+  background-color: #00ffe7;
+  box-shadow: 0 0 10px #00ffe7;
 }
 
-input[type="text"],
-input[type="number"] {
-    background-color: #1e1e1e;
-    color: #00ffff;
-    border: none;
-    padding: 8px;
-    border-radius: 4px;
-    width: 200px;
+/* === LOBBY BUTTON GROUP === */
+.lobbyButtons h4 {
+  margin-bottom: 8px;
+  text-align: center;
 }
 
+.lobbyButtons button {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* === MODALS === */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 10px;
-    text-align: center;
-    color: white;
-    width: 300px;
+  background-color: #222;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 350px;
 }
 
 .modal-content input[type="text"],
 .modal-content input[type="number"] {
-    width: 90%;
-    padding: 8px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    background: #333;
-    color: white;
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 4px;
+  background: #333;
+  color: white;
 }
 
-.error-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #2c2c2c;
-    padding: 20px 30px;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-    text-align: center;
-}
-
-.error-modal button {
-    margin-top: 12px;
-    padding: 8px 20px;
-    background-color: #00ffff;
-    border: none;
-    border-radius: 6px;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
+/* === GLOW ANIMATION === */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 6px #00ffe7; }
+  100% { box-shadow: 0 0 16px #00ffe7; }
 }

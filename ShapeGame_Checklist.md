@@ -35,22 +35,33 @@
 - [ ] Update player-service.ts to handle deletion and registry
 - [ ] Optimise to delete players from memory when logging out and deleteing guest users from the database and memory
 
+## 🧠 MEMORY AND DATABASE UPDATES
+- [ ] Cleaning a player or lobby from memory once they leave or are deleted
+- [ ] Delete guest accounts upon log-out or offline for a longer than X minutes
+
 ## 🛋️ LOBBY SYSTEM
+- [ ] Auto-refresh the lobby list every X seconds (or preferbly WebSocket update)
+- [ ] Show loading animation while fetching
+- [ ] Prevent joining full lobbies
+- [ ] Disable spectate if lobby doesn’t allow it
+- [ ] Dynamically update the players within a lobby on the page
+- [ ] Online Players tracker; Need to update the player system and database and implement refreshing the page update
+- [ ] Add icons to players
+- [ ] Lobby filtering
+
+## LOBBY PAGE
 - [x] `LobbyHandler` includes:
   - Lobby ID, name, max players, players array
   - Spectator flag
 - [x] Kicks all players if owner leaves
 - [x] Deletes empty lobbies
+- [ ] Need to update lobbyHandlers to send a post game result to the Postgres database
 
 ## 🛠️ DEVELOPER PANEL
 - [x] Hidden behind secret token
 - [x] Reads from `.txt` file (Git-ignored)
 - [x] Dev Panel appears only if key file exists
-- [x] Features:
-  - List all players from DB and in Memory
-  - Create player
-  - Delete player
-  - Assign player to lobby
+- [ ] List all players from DB and in Memory and delete/manage the DB
 
 ## 🖥️ FRONTEND SYSTEM
 - [x] `index.html` for UI
@@ -58,17 +69,18 @@
 - [x] Displays player ID and name
 - [x] Logout button → sets state to `offline`
 - [x] Dev Panel visibility based on dev key
-- [ ] Update Lobby into a fully finished main menu
+- [x] Update Lobby into a fully finished main menu
 - [ ] Add a Player page for player info and stats
-- [ ] Lobby UI needs updates and fixes
-- [ ] Login needs updates and fixes
+- [ ] Lobby UI needs updates and fixes and implement functionality
 
 ### 🔄 Backend API
 - [x] Routes: `/createLobby`, `/joinLobby`, `/leaveLobby`, `/deleteLobby`
 - [ ] Auto-handle player state transitions
 - [ ] Lobby cleanup logic
+- [ ] Player logout cleanup logic
 - [ ] Maintain information when refreshing page and reloading the UI
 
+# Plan for the gameplay and implementations of logic
 ### ⚙️ Shape Behaviors
 - [ ] Add collision-based shape pushing
 - [ ] Cube tilting on impact
@@ -80,11 +92,6 @@
 - [ ] Basic movement + attack commands
 - [ ] Health/damage system
 - [ ] Ownership per shape
-
-### 📦 Database (PostgreSQL)
-- [x] `create_players_table.sql`
-- [ ] `create_lobbies_table.sql`
-- [ ] Additional scripts: update, delete individual player
 
 ### 🎮 Alternative Gameplay idea:
 Create an engine or sepparte exe file that could be downloaded on the pc, mainmenu is on browser and upon starting the game players are re-directed into the game where it starts up.
