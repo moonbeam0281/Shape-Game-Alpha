@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lobby Dashboard</title>
-  
+
   <link rel="stylesheet" href="style.css" />
   <script defer src="./page.ts"></script>
   <link rel="icon" href="data:," />
@@ -13,24 +13,50 @@
 <body>
   <header>
     <h1>🧭 Welcome to the Shape War Lobby</h1>
-    <p>Logged in as <strong id="playerNameDisplay"></strong> (ID: <span id="playerIdDisplay"></span>)</p>
   </header>
 
   <div class="sidebar">
     <img src="" alt="Profile image" width="100" height="100">
     <p>STATS:</p>
+    <p>Logged in as <strong id="playerNameDisplay"></strong> (ID: <span id="playerIdDisplay"></span>)</p>
+    <button onclick="openLogout()">🚪 Log Out</button>
   </div>
   <main>
     <div class="mainHeader">
       <h2>Lobbies:</h2>
       <button onclick="openModal()">Create Lobby</button>
       <button onclick="loadLobbies()">Refresh</button>
-      <button onclick="openLogout()">🚪 Log Out</button>
     </div>
-    
-    <div id="lobbyList">
-      <!-- Dynamic lobby cards will go here -->
+
+    <div class="lobbyList">
+
+      <div class="lobbyCard">
+        <div class="lobbyInfo">
+          <h3>Lobby info:</h3>
+          <p>Moonbeam's lobby</p>
+          <p>Players: 5 / 8</p>
+          <p>ID: 30000</p>
+        </div>
+        <div class="lobbyCardPlayers">
+          <h4 class="owner" data-info="Rank: Gold | Ready: Yes">moonbeam</h4>
+
+          <h4>Testbot</h4>
+          <h4 class="bot">Testbot</h4>
+          <h4 class="bot">Testbot</h4>
+          <h4>Testbot</h4>
+          <h4>Testbot</h4>
+          <h4>Testbot</h4>
+        </div>
+        <div class="lobbyButtons">
+          <h4 class="lobbyDisc">Lobby Description</h4>
+          <button class="joinLobbyBtn">Join</button>
+          <button class="spectateLobbyBtn" disabled>Spectate</button>
+        </div>
+      </div>
+
+
     </div>
+
   </main>
 
   <div class="sidebar-right">

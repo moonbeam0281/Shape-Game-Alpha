@@ -85,3 +85,6 @@
 - [x] `create_players_table.sql`
 - [ ] `create_lobbies_table.sql`
 - [ ] Additional scripts: update, delete individual player
+
+### 🎮 Alternative Gameplay idea:
+Create an engine or sepparte exe file that could be downloaded on the pc, mainmenu is on browser and upon starting the game players are re-directed into the game where it starts up.
